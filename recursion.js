@@ -87,3 +87,32 @@ const mergeSort = arr => {
 
 console.log("--Merge sort--");
 console.log(mergeSort([3,2,1,3,4,5,6,7,7,7,3,32,3,4,234,234,23,23,32,5,2,12,132]));
+console.log([1,2].concat([3,4]));
+
+
+const quickSort = arr => {
+  if(arr.length == 0) return arr;
+  let pivot = [arr[Math.floor(Math.random()*arr.length)]];
+  let smaller = [];
+  let bigger = [];
+  let flag = false;
+  let sortedByPivot = [];
+  for(let i=0; i<arr.length;i++){
+    if(arr[i]<pivot[0]){
+      smaller.push(arr[i]);
+      continue;
+    }
+    else if (arr[i]>pivot[0]){
+      bigger.push(arr[i]);
+      continue;      
+    }
+    else {
+      if(flag)
+        pivot.push(arr[i]);
+      flag = true;
+    }
+  }
+ return sortedByPivot.concat(quickSort(smaller)).concat(pivot).concat(quickSort(bigger));
+}
+console.log("--Quick sort--");
+console.log(quickSort([600,1,1,2,2,21,5,5,554,54,54,35656,22,1,-96]));
