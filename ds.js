@@ -97,14 +97,17 @@ class LinkedList{
 class Queue {
   constructor(){
     this.queue = new LinkedList();
+    this.length = 0;
   }
 
   enqueue(...items){
     this.queue.push(...items);
+    this.length += items.length ;
   }
 
   dequeue(){
     if(this.queue.isEmpty()){
+      this.length -- ;
       return this.queue.shift();
     } else {
       throw "The queue is empty!"
@@ -115,6 +118,10 @@ class Queue {
     // reg ex to eliminiate the braces
     return this.queue.print().split("-")[0].replace(/\(|\)/g,"");
   }
+
+  _length(){
+    return this.length;
+  }
 }
 
 let ll = new LinkedList();
@@ -124,5 +131,8 @@ ll.print();
 ll.reverse();
 ll.print();
 let que = new Queue();
-que.enqueue(1,2,3,4);
-console.log(que.dequeue())
+que.enqueue(1,2,3,4,3,4,5);
+console.log(que._length());
+while(que._length()){
+  console.log(que.dequeue());
+}
